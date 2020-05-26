@@ -21,6 +21,8 @@ module.exports = app => {
 
   app.get('/logout', (req, res) => {
     req.logout();
+    req.session = undefined;
+    req.user = undefined;
     res.send('Logout success!!');
   });
 
