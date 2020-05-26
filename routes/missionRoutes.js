@@ -60,9 +60,7 @@ module.exports = app => {
       await req.user.populate('mission').execPopulate();
       req.user.mission.startTime = new Date();
       await req.user.mission.save();
-      res.send({ mission: req.user.mission });
+      res.send(req.user);
     }
   });
-
-  app.get('/missions/result', requireLogin, async (req, res) => {});
 };
