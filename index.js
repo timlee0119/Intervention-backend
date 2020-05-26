@@ -38,9 +38,9 @@ app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
     keys: [keys.cookieKey],
-    sameSite: 'none',
+    sameSite: 'none'
     // secure: false only for develop
-    secure: true
+    // secure: true
   })
 );
 app.use(passport.initialize());
