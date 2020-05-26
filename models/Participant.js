@@ -26,7 +26,7 @@ function validateLimitedWebsites(val) {
 
 function getHostname(url) {
   url = url.replace(/\/$/, '');
-  return url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '');
+  return url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0];
 }
 
 participantSchema.pre('save', function (next) {
