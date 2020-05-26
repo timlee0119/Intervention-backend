@@ -21,8 +21,13 @@ module.exports = app => {
 
   app.get('/logout', (req, res) => {
     req.logout();
-    req.session = undefined;
-    req.user = undefined;
+    req.session.destroy(function (err) {
+      // destroy session data
+      req.session = null;
+
+      // redirect to homepage
+      res.redirect('/');
+    });
     res.send('Logout success!!');
   });
 
