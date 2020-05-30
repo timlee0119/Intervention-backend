@@ -35,6 +35,8 @@ participantSchema.pre('save', function (next) {
     for (var i in this.limitedWebsites) {
       this.limitedWebsites[i] = getHostname(this.limitedWebsites[i]);
     }
+    const uniqueSet = new Set(this.limitedWebsites);
+    this.limitedWebsites = [...uniqueSet];
   }
   next();
 });
