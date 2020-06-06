@@ -60,7 +60,7 @@ class Connection {
       } else {
         history[dayNum] += Number(usingLimitedWebsite);
         await mission.save();
-        await mission.updateBonus(dayNum);
+        // await mission.updateBonus(dayNum); TODO: 這應該不用吧？？
       }
 
       this.socket.emit('serverUpdate', mission);
@@ -103,10 +103,6 @@ class Connection {
 module.exports = io => {
   const connectionPool = {};
   io.on('connection', socket => {
-    // socket.emit('news', { hello: 'world' });
-    // socket.on('my other event', data => {
-    //   console.log(data);
-    // });
     const connection = new Connection(connectionPool, socket);
     connectionPool[socket.id] = connection;
     console.log(`Socket #${socket.id} is connected`);
