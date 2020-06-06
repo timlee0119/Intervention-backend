@@ -53,7 +53,11 @@ missionSchema.methods.updateBonus = async function (dayNum) {
     (mission.money / (2 * mission.days)) * (dayNum + s1 - s2);
   mission.participants[1].bonus =
     (mission.money / (2 * mission.days)) * (dayNum + s2 - s1);
-  await mission.save();
+  try {
+    await mission.save();
+  } catch (error) {
+    console.error(error);
+  }
   return mission;
 };
 
