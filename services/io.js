@@ -59,8 +59,12 @@ class Connection {
         await updateSuccessDayAndFillHistory(mission, dayNum);
       } else {
         history[dayNum] += Number(usingLimitedWebsite);
-        await mission.save();
-        // await mission.updateBonus(dayNum); TODO: 這應該不用吧？？
+        // WARNING: this will somehow cause versioning error
+        try {
+          await mission.save();
+        } catch (error) {
+          console.error(error);
+        }
       }
 
       this.socket.emit('serverUpdate', mission);

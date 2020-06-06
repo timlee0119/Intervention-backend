@@ -60,6 +60,7 @@ missionSchema.methods.updateBonus = async function (dayNum) {
 missionSchema.set('toObject', { virtuals: true });
 missionSchema.set('toJSON', { virtuals: true });
 
+// WARNING: might cause performance issue, could be fixed by direct update
 missionSchema.pre('save', function (next) {
   this.markModified('participants');
   next();
