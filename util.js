@@ -21,8 +21,12 @@ async function updateSuccessDayAndFillHistory(mission, dayNum) {
       par.usageHistory[dayNum] = 0;
     }
   }
-  await mission.save();
-  await mission.updateBonus(dayNum);
+  try {
+    await mission.save();
+    await mission.updateBonus(dayNum);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 module.exports = {
