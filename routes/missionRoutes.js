@@ -33,7 +33,7 @@ module.exports = app => {
   app.patch('/missions', requireLogin, requireNoMission, async (req, res) => {
     const { code, limitTime, limitedWebsites } = req.body;
     const buf = new Buffer.from(code, 'base64');
-    const missionId = buf.toString();
+    const missionId = mongoose.Types.ObjectId(buf.toString());
     try {
       const mission = await Mission.findById(missionId);
       if (!mission) {

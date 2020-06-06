@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const User = require('../models/User');
 const Mission = require('../models/Mission');
 const { updateSuccessDayAndFillHistory } = require('../util');
@@ -26,7 +27,7 @@ class Connection {
       console.log(data);
       const { userId, currentTime } = data;
       const user = await User.findById(userId).populate('mission').exec();
-      this.missionId = user.mission._id;
+      this.missionId = mongoose.Types.ObjectId(user.mission._id);
       this.userParticipantIndex = this.getParticipantIndex(user);
 
       const dayNum = this.getDayNum(user.mission, currentTime);
