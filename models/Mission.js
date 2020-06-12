@@ -50,9 +50,9 @@ missionSchema.methods.updateBonus = async function (dayNum) {
   var s1 = mission.participants[0].successDay;
   var s2 = mission.participants[1].successDay;
   mission.participants[0].bonus =
-    (mission.money / (2 * mission.days)) * (dayNum + s1 - s2);
+    Math.floor(mission.money / (2 * mission.days)) * (dayNum + s1 - s2);
   mission.participants[1].bonus =
-    (mission.money / (2 * mission.days)) * (dayNum + s2 - s1);
+    Math.floor(mission.money / (2 * mission.days)) * (dayNum + s2 - s1);
   try {
     mission.markModified('participants');
     await mission.save();
