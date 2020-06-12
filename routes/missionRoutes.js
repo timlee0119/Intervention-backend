@@ -45,6 +45,8 @@ module.exports = app => {
           limitTime,
           limitedWebsites
         });
+        // mission.participants wouldn't be updated if below not present
+        mission.markModified('participants');
         await mission.save();
         await req.user.updateMissionAndPopulate(mission);
         res.send(req.user);

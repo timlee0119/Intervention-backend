@@ -1,3 +1,5 @@
+const Mission = require('../models/Mission');
+
 // his: [], dayNum: 0
 // his: [x], dayNum: 1
 // his: [x], dayNum: 3
@@ -22,10 +24,17 @@ async function updateSuccessDayAndFillHistory(mission, dayNum) {
     }
   }
   try {
+    mission.markModified('participants');
     await mission.save();
     await mission.updateBonus(dayNum);
   } catch (error) {
     console.error(error);
+    // if cannot save, means mission is modified during find and save
+    // And this cause versionKey error, so we replace mission with newer version
+    const newerVersionMission = await Mission.findById(mission._id);
+    Object.keys(newerVersionMission).forEach(k => {
+      mission[k] = newerVersionMission[k];
+    });
   }
 }
 

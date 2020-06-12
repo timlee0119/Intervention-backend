@@ -31,6 +31,7 @@ class Connection {
       this.userParticipantIndex = this.getParticipantIndex(user);
 
       const dayNum = this.getDayNum(user.mission, currentTime);
+      // TODO handle error / handled in the function
       await updateSuccessDayAndFillHistory(user.mission, dayNum);
       console.log('participants after update: ', user.mission.participants);
 
@@ -60,8 +61,11 @@ class Connection {
         await updateSuccessDayAndFillHistory(mission, dayNum);
       } else {
         history[dayNum] += Number(usingLimitedWebsite);
-        // WARNING: this will somehow cause versioning error
+        // WARNING: this will previously cause versioning error due to concurrent save() of two users
+        // Fixed it with markModified only the user's index
+        //
         try {
+          mission.markModified(`participants.${this.userParticipantIndex}`);
           await mission.save();
         } catch (error) {
           console.error(error);
