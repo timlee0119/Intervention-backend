@@ -1,4 +1,4 @@
-const Mission = require('../models/Mission');
+const Mission = require('./models/Mission');
 
 // his: [], dayNum: 0
 // his: [x], dayNum: 1
