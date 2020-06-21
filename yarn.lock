@@ -966,6 +966,11 @@ mongoose-legacy-pluralize@1.0.2:
   resolved "https://registry.yarnpkg.com/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
   integrity sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==
 
+mongoose-shortid-nodeps@^0.6.5:
+  version "0.6.5"
+  resolved "https://registry.yarnpkg.com/mongoose-shortid-nodeps/-/mongoose-shortid-nodeps-0.6.5.tgz#ddd667983d54dcf61f2375478373cf7eda30a491"
+  integrity sha1-3dZnmD1U3PYfI3VHg3PPftowpJE=
+
 mongoose@^5.9.13:
   version "5.9.13"
   resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.9.13.tgz#fa4af761a0b1d10471daa23aafcc775b04b6db42"

@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
 const requireNoMission = require('../middlewares/requireNoMission');
 const Mission = require('../models/Mission');
@@ -32,10 +31,8 @@ module.exports = app => {
 
   app.patch('/missions', requireLogin, requireNoMission, async (req, res) => {
     const { code, limitTime, limitedWebsites } = req.body;
-    const buf = new Buffer.from(code, 'base64');
-    const missionId = mongoose.Types.ObjectId(buf.toString());
     try {
-      const mission = await Mission.findById(missionId);
+      const mission = await Mission.findOne({ code });
       if (!mission) {
         res.status(404).send();
       } else {

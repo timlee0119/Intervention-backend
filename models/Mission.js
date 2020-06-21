@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const ShortId = require('mongoose-shortid-nodeps');
 const ParticipantSchema = require('./Participant').schema;
 
 const missionSchema = new mongoose.Schema({
@@ -10,11 +11,8 @@ const missionSchema = new mongoose.Schema({
     validate: [validateParticipants, 'Participants length should be 1 or 2']
   },
   code: {
-    type: String,
-    default: function () {
-      var buf = new Buffer.from(String(this._id));
-      return buf.toString('base64');
-    }
+    type: ShortId,
+    index: true
   },
   startTime: { type: Date }
 });
